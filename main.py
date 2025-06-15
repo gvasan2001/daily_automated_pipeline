@@ -11,11 +11,11 @@ def get_daily_data():
 # Insert into PostgreSQL database
 def insert_data_to_postgres(data):
     conn = psycopg2.connect(
-        dbname="railway",
-        user="postgres",
-        password="OFdPMrdyDQHgPEeVVTJnFoOimDiccdCu",
-        host="postgres.railway.internal",
-        port="5432"
+        dbname=os.getenv("PGDATABASE"),
+        user=os.getenv("PGUSER"),
+        password=os.getenv("PGPASSWORD"),
+        host=os.getenv("PGHOST"),
+        port=os.getenv("PGPORT")
     )
     cursor = conn.cursor()
 
