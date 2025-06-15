@@ -89,7 +89,7 @@ def generate_llm_insight():
     ]
 )
 
-output = response.choices[0].message.content
+    output = response.choices[0].message.content
     content = response['choices'][0]['message']['content']
     summary = content.split("\n")[0]  # First line
     recommendations = content  # Full text
