@@ -3,7 +3,7 @@
 from openbb import obb
 import psycopg2
 from datetime import datetime, timedelta
-import openai
+from openai import OpenAI
 import os
 
 # === Step 1: Fetch yesterday's stock data ===
@@ -79,16 +79,17 @@ def generate_llm_insight():
     """
 
     # Set your OpenAI API key
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    client = OpenAI(api_key=os.getenv("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"))
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": "You are a financial analyst."},
-            {"role": "user", "content": prompt}
-        ]
-    )
+    response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "You are a financial analyst."},
+        {"role": "user", "content": prompt}
+    ]
+)
 
+output = response.choices[0].message.content
     content = response['choices'][0]['message']['content']
     summary = content.split("\n")[0]  # First line
     recommendations = content  # Full text
