@@ -79,7 +79,7 @@ def generate_llm_insight():
     """
 
     # Set your OpenAI API key
-    client = OpenAI(api_key="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")
+    client = OpenAI(api_key="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")
 
     response = client.chat.completions.create(
     model="gpt-4",
