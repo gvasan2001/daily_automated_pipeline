@@ -1,6 +1,7 @@
 from openbb import obb
 import psycopg2
 from datetime import datetime, timedelta
+import os
 
 # Fetch yesterday's data
 def get_daily_data():
