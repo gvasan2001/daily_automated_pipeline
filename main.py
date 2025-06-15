@@ -85,7 +85,7 @@ def generate_llm_insight():
 )
 
     response = client.chat.completions.create(
-    model="gpt-4",
+    model="gpt-4o",
     messages=[
         {"role": "system", "content": "You are a financial analyst."},
         {"role": "user", "content": prompt}
