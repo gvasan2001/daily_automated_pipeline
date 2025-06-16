@@ -4,6 +4,7 @@ from openbb import obb
 import psycopg2
 from datetime import datetime, timedelta
 from openai import OpenAI
+import openai
 import os
 
 # === Step 1: Fetch yesterday's stock data ===
