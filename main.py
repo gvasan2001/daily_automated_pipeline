@@ -80,7 +80,7 @@ def generate_llm_insight():
 
     # Set your OpenAI API key
     client = OpenAI(
-  base_url="https://openrouter.ai/api/v1",
+  base_url="https://openrouter.ai/api/v1/",
     api_key="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",    
 )
 
