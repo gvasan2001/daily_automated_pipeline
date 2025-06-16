@@ -8,7 +8,7 @@ import os
 
 # === Step 1: Fetch yesterday's stock data ===
 def get_daily_data():
-    yesterday = (datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d")
+    yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
     data = obb.equity.price.historical("AAPL", start_date=yesterday, end_date=yesterday)
     return data.to_dict("records")[0]  # Returns data for one day
 
