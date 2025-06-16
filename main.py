@@ -80,12 +80,16 @@ def generate_llm_insight():
 
     # Set your OpenAI API key
     client = OpenAI(
-    base_url="https://api.aimlapi.com/v1",
-    api_key="3764231b247a459997ec6535ff9cfebe",    
+  base_url="https://openrouter.ai/api/v1",
+    api_key="sk-or-v1-6e3...54f",    
 )
 
     response = client.chat.completions.create(
-    model="gpt-4o",
+    extra_headers={
+    "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on openrouter.ai.
+    "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on openrouter.ai.
+  },
+  model="openai/gpt-4o",
     messages=[
         {"role": "system", "content": "You are a financial analyst."},
         {"role": "user", "content": prompt}
