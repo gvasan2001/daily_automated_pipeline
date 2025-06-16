@@ -84,16 +84,36 @@ def generate_llm_insight():
 #   base_url="https://openrouter.ai/api/v1/",
 #     api_key="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",    
 # )
-    openai.api_base = "https://openrouter.ai/api/v1"
-    openai.api_key = "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"
+#     openai.api_base = "https://openrouter.ai/api/v1"
+#     openai.api_key = "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"
 
-    response = openai.ChatCompletion.create(
-  model="openai/gpt-3.5-turbo",
-    messages=[
+#     response = openai.ChatCompletion.create(
+#   model="openai/gpt-3.5-turbo",
+#     messages=[
+#         {"role": "system", "content": "You are a financial analyst."},
+#         {"role": "user", "content": prompt}
+#     ]
+# )
+
+    headers = {
+        "Authorization": f"Bearer {os.getenv('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')}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "model": "mistralai/mistral-7b-instruct",  # Free model
+        "messages": [
         {"role": "system", "content": "You are a financial analyst."},
         {"role": "user", "content": prompt}
-    ]
-)
+    ],
+        "max_tokens": 500
+    }
+    
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers=headers,
+        json=payload
+    ).json()
 
     output = response.choices[0].message.content
     content = response['choices'][0]['message']['content']
