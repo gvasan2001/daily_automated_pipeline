@@ -115,6 +115,7 @@ def generate_llm_insight():
         headers=headers,
         json=payload
     ).json()
+    print(response)
 
     output = response.choices[0].message.content
     content = response['choices'][0]['message']['content']
