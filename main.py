@@ -7,6 +7,7 @@ from openai import OpenAI
 import openai
 import os
 import requests
+from mistralai import Mistral
 
 # === Step 1: Fetch yesterday's stock data ===
 def get_daily_data():
@@ -80,42 +81,21 @@ def generate_llm_insight():
     Provide a short summary of performance and 3 recommendations.
     """
 
-    # Set your OpenAI API key
-#     client = OpenAI(
-#   base_url="https://openrouter.ai/api/v1/",
-#     api_key="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",    
-# )
-#     openai.api_base = "https://openrouter.ai/api/v1"
-#     openai.api_key = "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"
+ 
 
-#     response = openai.ChatCompletion.create(
-#   model="openai/gpt-3.5-turbo",
-#     messages=[
-#         {"role": "system", "content": "You are a financial analyst."},
-#         {"role": "user", "content": prompt}
-#     ]
-# )
+    api_key = "lWim9ElFQaZB43py6fgG3LJFjRuHY1X6"
+    model = "mistral-large-latest"
 
-    headers = {
-        "Authorization": f"Bearer {os.getenv('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')}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = {
-        "model": "mistralai/mistral-7b-instruct",  # Free model
-        "messages": [
-        {"role": "system", "content": "You are a financial analyst."},
-        {"role": "user", "content": prompt}
-    ],
-        "max_tokens": 500
-    }
-    
-    response = requests.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        headers=headers,
-        json=payload
-    ).json()
-    print(response)
+    # Set Gemini API Key
+    client = Mistral(api_key=api_key)
+
+    response = client.chat.complete(
+    model=model,
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": prompt},
+    ]
+)
 
     output = response.choices[0].message.content
     content = response['choices'][0]['message']['content']
