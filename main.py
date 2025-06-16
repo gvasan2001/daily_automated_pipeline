@@ -1,12 +1,11 @@
 # daily_pipeline.py
-
 from openbb import obb
 import psycopg2
 from datetime import datetime, timedelta
-from openai import OpenAI
-import openai
+# from openai import OpenAI
+# import openai
 import os
-import requests
+# import requests
 from mistralai import Mistral
 
 # === Step 1: Fetch yesterday's stock data ===
@@ -96,7 +95,7 @@ def generate_llm_insight():
         {"role": "user", "content": prompt},
     ]
 )
-    print(response)
+    
     output = response.choices[0].message.content
     content = response.choices[0].message.content
     summary = content.split("\n")[0]  # First line
