@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from openai import OpenAI
 import openai
 import os
+import requests
 
 # === Step 1: Fetch yesterday's stock data ===
 def get_daily_data():
