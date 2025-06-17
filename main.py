@@ -3,7 +3,7 @@ from openbb import obb
 import psycopg2
 from datetime import datetime, timedelta
 # from openai import OpenAI
-# import openai
+# import openai 
 import os
 # import requests
 from mistralai import Mistral
